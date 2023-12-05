@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqqgyqafm7xwp"]
+
+[ext_resource type="PackedScene" uid="uid://bs1vcfpjnrmrm" path="res://objects/player_controller.tscn" id="1_yb5ra"]
+[ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="3_3c5w8"]
+[ext_resource type="PackedScene" uid="uid://cnymdajj1vsqm" path="res://objects/platform.tscn" id="6_avip2"]
+[ext_resource type="PackedScene" uid="uid://dbs85x5g7scud" path="res://objects/block.tscn" id="7_0muys"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="7_gumsc"]
+[ext_resource type="Texture2D" uid="uid://cd7oyc56ehkx1" path="res://sprites/coin.png" id="8_ir5pw"]
+[ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://fonts/lilita_one_regular.ttf" id="9_sfeda"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_38ys3"]
+font = ExtResource("9_sfeda")
+font_size = 48
+shadow_color = Color(0, 0, 0, 0.376471)
+shadow_offset = Vector2(2, 2)
+
+[node name="Game" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0056591, 0.0210505, -0.0117111)
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_3c5w8")
+
+[node name="World" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="platform" parent="World" instance=ExtResource("6_avip2")]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.422618, -0.694272, 0.582563, 0, 0.642788, 0.766044, -0.906308, 0.323744, -0.271654, 0, 0, 0)
+shadow_enabled = true
+shadow_opacity = 0.75
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("7_gumsc")
+
+[node name="Icon" type="TextureRect" parent="HUD"]
+offset_left = 57.0
+offset_top = 67.0
+offset_right = 313.0
+offset_bottom = 323.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_ir5pw")
+metadata/_edit_use_anchors_ = true
+
+[node name="x" type="Label" parent="HUD"]
+offset_left = 112.0
+offset_top = 64.0
+offset_right = 144.0
+offset_bottom = 123.0
+text = "×"
+label_settings = SubResource("LabelSettings_38ys3")
+metadata/_edit_use_anchors_ = true
+
+[node name="Coins" type="Label" parent="HUD"]
+offset_left = 144.0
+offset_top = 64.0
+offset_right = 368.0
+offset_bottom = 123.0
+text = "0"
+label_settings = SubResource("LabelSettings_38ys3")
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerController" parent="." instance=ExtResource("1_yb5ra")]
+
+[node name="Block" parent="." instance=ExtResource("7_0muys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.36463, 2.85502, 6.77602)

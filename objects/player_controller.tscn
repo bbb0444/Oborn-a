@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs1vcfpjnrmrm"]
+
+[ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="1_200ty"]
+[ext_resource type="Script" path="res://scripts/view.gd" id="2_hahlc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6f4kd"]
+
+[node name="PlayerController" type="Node3D"]
+
+[node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("1_200ty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 10)
+view = NodePath("../View")
+
+[node name="View" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_hahlc")
+target = NodePath("../Player")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="View"]
+unique_name_in_owner = true
+shape = SubResource("CapsuleShape3D_6f4kd")
+spring_length = 8.0
+margin = 0.5
+
+[node name="Camera" type="Camera3D" parent="View/SpringArm3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+current = true
+fov = 40.0

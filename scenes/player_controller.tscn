@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0hn4v11ojls4"]
+
+[ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="1_200ty"]
+[ext_resource type="Script" path="res://scripts/view.gd" id="2_hahlc"]
+
+[node name="Player" type="Node3D"]
+
+[node name="View" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_hahlc")
+target = NodePath("../Character")
+
+[node name="Camera" type="Camera3D" parent="View"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+current = true
+fov = 40.0
+
+[node name="Character" parent="." instance=ExtResource("1_200ty")]
