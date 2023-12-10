@@ -10,6 +10,14 @@
 [node name="Game" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0056591, 0.0210505, -0.0117111)
 
+[node name="PlayerController" parent="." instance=ExtResource("1_yb5ra")]
+unique_name_in_owner = true
+
+[node name="HUD" type="CanvasLayer" parent="PlayerController"]
+script = ExtResource("7_gumsc")
+
+[node name="Crosshair" parent="PlayerController/HUD" instance=ExtResource("4_u3epl")]
+
 [node name="Environment" type="WorldEnvironment" parent="."]
 environment = ExtResource("3_3c5w8")
 
@@ -18,19 +26,10 @@ unique_name_in_owner = true
 
 [node name="platform" parent="World" instance=ExtResource("6_avip2")]
 
+[node name="Block" parent="World" instance=ExtResource("7_0muys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.36463, 2.85502, 6.77602)
+
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.422618, -0.694272, 0.582563, 0, 0.642788, 0.766044, -0.906308, 0.323744, -0.271654, 0, 0, 0)
 shadow_enabled = true
 shadow_opacity = 0.75
-
-[node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("7_gumsc")
-
-[node name="Crosshair" parent="HUD" instance=ExtResource("4_u3epl")]
-thickness = null
-
-[node name="PlayerController" parent="." instance=ExtResource("1_yb5ra")]
-unique_name_in_owner = true
-
-[node name="Block" parent="." instance=ExtResource("7_0muys")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.36463, 2.85502, 6.77602)

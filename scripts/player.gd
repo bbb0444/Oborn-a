@@ -3,7 +3,7 @@ extends CharacterBody3D
 signal coin_collected
 
 @export_subgroup("Components")
-@export var view: Node3D
+@export var spring_arm: Node3D
 
 @export_subgroup("Properties")
 @export var movement_speed = 250
@@ -50,32 +50,28 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	# Rotation
-	
-	# if Vector2(velocity.z, velocity.x).length() > 0: #character is moving (checking if velocity z and x are greater than 0 doesnt work becuase of negaive velocity values)
-	# 	rotation_direction = Vector2(velocity.z, velocity.x).angle() #get angle of velocity direction
-	
 
 	if player_controller.aiming: #for some reason this moving this to player_controller under if aiming check doesnt work the same
-		# var direction = view.transform.basis.z # - cuz + is backwards?
+		# var direction = spring_arm.transform.basis.z # - cuz + is backwards?
 		# rotation_direction = atan2(direction.x, direction.z)
 		# rotation.y = lerp_angle(rotation.y, rotation_direction, delta * lerpSpeed)
  
 		#look_at(direction, Vector3.UP) 
-		
+
 		set_rotation(Vector3(0, get_rotation().y, 0)) #ignore x and z axis rotations (only rotate around y axis)
-		rotation.y = lerp_angle(rotation.y, view.rotation.y, delta * lerpSpeed) #rotate charater to face camera direction
+		rotation.y = lerp_angle(rotation.y, spring_arm.rotation.y, delta * lerpSpeed * 2) #rotate charater to face camera direction
 
 	elif Vector2(velocity.z, velocity.x).length() > 0.1: #character is moving (checking if velocity z and x are greater than 0 ( 0.1 leniency cuz of velocity lerp) doesnt work becuase of negaive velocity values)
 		rotation_direction = Vector2(velocity.z, velocity.x).angle() #get angle of velocity direction
 		rotation.y = lerp_angle(rotation.y, rotation_direction, delta * lerpSpeed) #rotate charater to face velocity direction
 		
 
-	print(rotation_direction, applied_velocity, velocity)
+	# print(rotation_direction, applied_velocity, velocity)
 
 	# Falling/respawning
 	
-	# if position.y < -lerpSpeed:
-	# 	get_tree().reload_current_scene() 
+	if position.y < -lerpSpeed:
+		get_tree().reload_current_scene() 
 	
 	# Animation for scale (jumping and landing)
 	
@@ -117,7 +113,7 @@ func handle_controls(delta):
 	input.x = Input.get_axis("move_right", "move_left")
 	input.z = Input.get_axis("move_back", "move_forward")
 	
-	input = input.rotated(Vector3.UP, view.rotation.y).normalized() # adjust input direction to follow camera direction
+	input = input.rotated(Vector3.UP, spring_arm.rotation.y).normalized() # adjust input direction to follow camera direction
 	
 	movement_velocity = input * movement_speed * delta
 	

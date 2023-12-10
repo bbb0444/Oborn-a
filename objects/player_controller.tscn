@@ -9,11 +9,11 @@
 script = ExtResource("1_4b1ew")
 target = NodePath("Player")
 
-[node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("1_200ty")]
+[node name="Player" parent="." node_paths=PackedStringArray("spring_arm") instance=ExtResource("1_200ty")]
 unique_name_in_owner = true
 transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 collision_layer = 2
-view = NodePath("../View/RootOffset/SpringArm3D")
+spring_arm = NodePath("../View/RootOffset/SpringArm3D")
 movement_speed = 240
 
 [node name="View" type="Node3D" parent="."]

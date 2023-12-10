@@ -14,7 +14,7 @@ extends Node3D
 
 @export_group("Rotation")
 @export var rotation_speed = 120
-@export var mouse_sensitivity = 0.1
+@export var mouse_sensitivity = 0.05
 @export var lerp_weight = 10
 
 @export_group("Camera")
@@ -28,7 +28,9 @@ extends Node3D
 var zoom_default = 8.0 #arm.spring_length
 var zoom = zoom_default
 var camera_rotation:Vector3
+
 var aiming = false
+
 var offset = Vector3(x_offset, y_offset, z_offset)
 
 var camera_x_rot_clamp = -80.0
@@ -36,9 +38,12 @@ var camera_y_rot_clamp = 0.0
 
 var mouse_delta = Vector2.ZERO
 
+signal Aiming(aiming)
+
 func _ready():
 	
 	camera_rotation = rotation_degrees # Initial rotation
+	GlobalSignals.add_emitter("Aiming", self)
 	
 	pass
 
@@ -82,6 +87,7 @@ func handle_input(delta):
 		offset.z = 5
 		arm.spring_length = lerp(arm.spring_length, zoom_maximum, lerp_weight * delta)
 		camera_y_rot_clamp = lerp(camera_y_rot_clamp, 80.0, lerp_weight * delta)
+
 		
 	else:
 		offset.x = x_offset
@@ -90,6 +96,7 @@ func handle_input(delta):
 		arm.spring_length = lerp(arm.spring_length, zoom_default, lerp_weight * delta)
 		camera_y_rot_clamp = lerp(camera_y_rot_clamp, 0.0, lerp_weight * delta)
 
+	
 
 	camera.position = camera.position.lerp(offset, lerp_weight * delta)
 	mouse_delta = Vector2.ZERO # Reset mouse delta to stop camera from rotating when not moving mouse
@@ -104,10 +111,12 @@ func _input(event):
 		# camera_root_offset.rotate_y(PI/13)
 		# camera_leaf_offset.rotate_y(-PI/13)
 		aiming = true
+		emit_signal("Aiming", aiming)
 	if event.is_action_released("aim"):
 		# camera_root_offset.rotate_y(-PI/13)
 		# camera_leaf_offset.rotate_y(PI/13)
 		aiming = false
+		emit_signal("Aiming", aiming)
 	if event is InputEventMouseMotion:
 		mouse_delta = Vector2(event.relative.x, event.relative.y) * mouse_sensitivity # mouse vector since last frame
 
