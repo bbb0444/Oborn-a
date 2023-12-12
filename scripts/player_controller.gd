@@ -44,7 +44,6 @@ func _ready():
 	
 	camera_rotation = rotation_degrees # Initial rotation
 	GlobalSignals.add_emitter("Aiming", self)
-	
 	pass
 
 func _physics_process(delta):
@@ -70,8 +69,8 @@ func handle_input(delta):
 	
 	var input := Vector3.ZERO
 	
-	input.y = Input.get_axis("camera_left", "camera_right")
-	input.x = Input.get_axis("camera_up", "camera_down")
+	input.y = Input.get_axis("camera_right","camera_left")
+	input.x = Input.get_axis("camera_down","camera_up")
 	
 	camera_rotation += input.limit_length(1.0) * rotation_speed * delta # Rotate camera consistently
 

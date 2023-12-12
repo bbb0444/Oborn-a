@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://blqf5cwsk25xj"
-path="res://.godot/imported/grass.glb-0ce858eae1c69c894a569863f13e24f1.scn"
+uid="uid://bxh8577i4teta"
+path="res://.godot/imported/perimeter.glb-da11f7b7616bb7bca552ea3706d47e02.scn"
 
 [deps]
 
-source_file="res://models/grass.glb"
-dest_files=["res://.godot/imported/grass.glb-0ce858eae1c69c894a569863f13e24f1.scn"]
+source_file="res://models/perimeter.glb"
+dest_files=["res://.godot/imported/perimeter.glb-da11f7b7616bb7bca552ea3706d47e02.scn"]
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Scene Root"
+nodes/root_type=""
+nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
@@ -30,5 +30,5 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={}
-gltf/naming_version=0
+gltf/naming_version=1
 gltf/embedded_image_handling=1

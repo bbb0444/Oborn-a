@@ -1,20 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnymdajj1vsqm"]
+[gd_scene load_steps=3 format=3 uid="uid://bbb42qudr1iwv"]
 
-[ext_resource type="PackedScene" uid="uid://do8sg1k5xvj2h" path="res://models/platform.glb" id="1_xagml"]
+[sub_resource type="BoxMesh" id="BoxMesh_i1prv"]
+size = Vector3(100, 1, 100)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_j1l5n"]
-size = Vector2(50, 50)
+[sub_resource type="BoxShape3D" id="BoxShape3D_2vh37"]
+size = Vector3(100, 1, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_x5f7c"]
-size = Vector3(50, 10, 50)
+[node name="platform" type="Node3D"]
 
-[node name="platform" instance=ExtResource("1_xagml")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.5, 2.08165e-12)
+custom_aabb = AABB(2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+mesh = SubResource("BoxMesh_i1prv")
 
-[node name="platform2" parent="." index="0"]
-mesh = SubResource("PlaneMesh_j1l5n")
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="platform2" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="platform2/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -5, 2.08165e-12)
-shape = SubResource("BoxShape3D_x5f7c")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_2vh37")

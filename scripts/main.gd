@@ -10,6 +10,7 @@ func _ready():
 	GlobalSignals.add_listener("resumed", self, "_on_resumed_game")
 	GlobalSignals.add_listener("quit", self, "_on_quit_game")
 
+	DebugMenu.get_node("DebugMenu").style = DebugMenu.get_node("DebugMenu").Style.VISIBLE_DETAILED
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

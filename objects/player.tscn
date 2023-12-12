@@ -26,6 +26,7 @@ point_count = 3
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("1_ffboj")
+movement_speed = null
 jump_strength = 10
 
 [node name="Collider" type="CollisionShape3D" parent="."]
@@ -34,6 +35,9 @@ shape = SubResource("CapsuleShape3D_gdq8c")
 
 [node name="Character" parent="." instance=ExtResource("2_nero3")]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
+
+[node name="character2" parent="Character" index="0"]
+transform = Transform3D(-1, 3.48787e-16, 8.74228e-08, 3.48787e-16, 1, -3.48787e-16, -8.74228e-08, -3.48787e-16, -1, 0, 0, 0)
 
 [node name="leg-right" parent="Character/character2/root" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.17625, -0.02375)

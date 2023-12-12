@@ -28,11 +28,14 @@ run/show_image=false
 Audio="*res://scripts/audio.gd"
 Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
 GlobalSignals="*res://scripts/global_signals.gd"
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -44,7 +47,7 @@ movie_writer/movie_file="C:/Users/Kenney/Desktop/video-footage.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg")
+enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg", "res://addons/debug_menu/plugin.cfg")
 
 [input]
 

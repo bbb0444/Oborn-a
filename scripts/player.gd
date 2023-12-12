@@ -28,8 +28,6 @@ var lerpSpeed = 10
 @onready var animation = $Character/AnimationPlayer
 @onready var player_controller = get_parent()
 
-# Functions
-
 func _physics_process(delta):
 	
 	# Handle functions
@@ -62,11 +60,11 @@ func _physics_process(delta):
 		rotation.y = lerp_angle(rotation.y, spring_arm.rotation.y, delta * lerpSpeed * 2) #rotate charater to face camera direction
 
 	elif Vector2(velocity.z, velocity.x).length() > 0.1: #character is moving (checking if velocity z and x are greater than 0 ( 0.1 leniency cuz of velocity lerp) doesnt work becuase of negaive velocity values)
-		rotation_direction = Vector2(velocity.z, velocity.x).angle() #get angle of velocity direction
+		rotation_direction = PI + Vector2(velocity.z, velocity.x).angle() #get angle of velocity direction
 		rotation.y = lerp_angle(rotation.y, rotation_direction, delta * lerpSpeed) #rotate charater to face velocity direction
 		
 
-	# print(rotation_direction, applied_velocity, velocity)
+	print(rotation_direction, movement_velocity, applied_velocity, velocity, Vector2.RIGHT)
 
 	# Falling/respawning
 	
@@ -110,8 +108,8 @@ func handle_controls(delta):
 	
 	var input := Vector3.ZERO
 	
-	input.x = Input.get_axis("move_right", "move_left")
-	input.z = Input.get_axis("move_back", "move_forward")
+	input.x = Input.get_axis("move_left","move_right")
+	input.z = Input.get_axis("move_forward","move_back" )
 	
 	input = input.rotated(Vector3.UP, spring_arm.rotation.y).normalized() # adjust input direction to follow camera direction
 	
@@ -163,3 +161,4 @@ func collect_coin():
 	coins += 1
 	
 	coin_collected.emit(coins)
+

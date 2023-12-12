@@ -74,7 +74,7 @@ public partial class crosshair : Control
 
 	public void _Aiming(bool aiming)
 	{
-		GD.Print("Aiming", aiming);
+		//GD.Print("Aiming", aiming);
 		if (aiming)
 		{
 			close = true;

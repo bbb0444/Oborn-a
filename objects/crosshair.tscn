@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://pnfaw1y47l84"]
+[gd_scene load_steps=3 format=3 uid="uid://dj0p5tbaathkg"]
 
 [ext_resource type="Script" path="res://scripts/crosshair.cs" id="1_s7xl8"]
-[ext_resource type="Script" path="res://reticle.gd" id="1_xen1v"]
+[ext_resource type="Script" path="res://scripts/reticle.gd" id="2_3h7ed"]
 
 [node name="Crosshair" type="Control"]
 layout_mode = 3
@@ -23,9 +23,8 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_xen1v")
+script = ExtResource("2_3h7ed")
 DOT_RADIUS = 2.08165e-12
-DOT_COLOR = Color(0, 1, 1, 1)
 
 [node name="Bottom" type="Line2D" parent="Reticle"]
 points = PackedVector2Array(2.08165e-12, 5, 2.08165e-12, 15)
