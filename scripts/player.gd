@@ -45,26 +45,27 @@ func _physics_process(delta):
 	applied_velocity.y = -gravity
 	
 	velocity = applied_velocity
-	move_and_slide()
+
+	move_and_slide() #only moves in local cordinates
 	
 	# Rotation
 
 	if player_controller.aiming: #for some reason this moving this to player_controller under if aiming check doesnt work the same
-		# var direction = spring_arm.transform.basis.z # - cuz + is backwards?
-		# rotation_direction = atan2(direction.x, direction.z)
-		# rotation.y = lerp_angle(rotation.y, rotation_direction, delta * lerpSpeed)
+		var direction = spring_arm.transform.basis.z # - cuz + is backwards?
+		rotation_direction = atan2(direction.x, direction.z)
+		rotation.y = lerp_angle(rotation.y, rotation_direction, delta * lerpSpeed)
  
 		#look_at(direction, Vector3.UP) 
 
 		set_rotation(Vector3(0, get_rotation().y, 0)) #ignore x and z axis rotations (only rotate around y axis)
-		rotation.y = lerp_angle(rotation.y, spring_arm.rotation.y, delta * lerpSpeed * 2) #rotate charater to face camera direction
+		# rotation.y = lerp_angle(rotation.y, spring_arm.rotation.y, delta * lerpSpeed * 2) #rotate charater to face camera direction
 
 	elif Vector2(velocity.z, velocity.x).length() > 0.1: #character is moving (checking if velocity z and x are greater than 0 ( 0.1 leniency cuz of velocity lerp) doesnt work becuase of negaive velocity values)
 		rotation_direction = PI + Vector2(velocity.z, velocity.x).angle() #get angle of velocity direction
 		rotation.y = lerp_angle(rotation.y, rotation_direction, delta * lerpSpeed) #rotate charater to face velocity direction
 		
 
-	print(rotation_direction, movement_velocity, applied_velocity, velocity, Vector2.RIGHT)
+	# print(rotation_direction, movement_velocity, applied_velocity, velocity, Vector2.RIGHT)
 
 	# Falling/respawning
 	

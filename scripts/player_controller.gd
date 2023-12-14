@@ -39,11 +39,13 @@ var camera_y_rot_clamp = 0.0
 var mouse_delta = Vector2.ZERO
 
 signal Aiming(aiming)
+signal Shoot()
 
 func _ready():
 	
 	camera_rotation = rotation_degrees # Initial rotation
 	GlobalSignals.add_emitter("Aiming", self)
+	GlobalSignals.add_emitter("Shoot", self)
 	pass
 
 func _physics_process(delta):
@@ -51,7 +53,7 @@ func _physics_process(delta):
 	# Set position and rotation to targets
 	
 	arm.rotation_degrees = camera_rotation
-	view.position = target.position
+	view.position = target.global_transform.origin
 
 	#camera.position = camera.position.lerp(offset, lerp_weight * delta)
 	#view.position = target.position.lerp(target.position + offset, 50*delta)
@@ -116,12 +118,17 @@ func _input(event):
 		# camera_leaf_offset.rotate_y(PI/13)
 		aiming = false
 		emit_signal("Aiming", aiming)
+	
+	if event.is_action_pressed("shoot"):
+		emit_signal("Shoot")
+
+
 	if event is InputEventMouseMotion:
 		mouse_delta = Vector2(event.relative.x, event.relative.y) * mouse_sensitivity # mouse vector since last frame
-
 	
 
-
+func get_player_pos() -> Vector3:
+	return player.global_transform.origin
 
 
 

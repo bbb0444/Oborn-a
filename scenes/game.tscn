@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=9 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="PackedScene" uid="uid://bs1vcfpjnrmrm" path="res://objects/player_controller.tscn" id="1_yb5ra"]
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="3_3c5w8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dbs85x5g7scud" path="res://objects/block.tscn" id="7_0muys"]
 [ext_resource type="PackedScene" uid="uid://cbemgoikthj7k" path="res://scenes/perimeter2.tscn" id="7_24a0y"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="7_gumsc"]
+[ext_resource type="Script" path="res://scripts/debug.gd" id="8_e2cmv"]
 
 [node name="Game" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0056591, 0.0210505, -0.0117111)
@@ -37,3 +38,10 @@ visible = false
 transform = Transform3D(-0.0139622, 0.984712, -0.173631, 6.05662e-17, 0.173648, 0.984808, 0.999903, 0.0137501, -0.00242451, 0, 0, 0)
 shadow_enabled = true
 shadow_opacity = 0.75
+
+[node name="Debug" type="CanvasLayer" parent="."]
+script = ExtResource("8_e2cmv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug"]
+offset_right = 40.0
+offset_bottom = 40.0

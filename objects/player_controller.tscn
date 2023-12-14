@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs1vcfpjnrmrm"]
+[gd_scene load_steps=5 format=3 uid="uid://bs1vcfpjnrmrm"]
 
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_4b1ew"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="1_200ty"]
+[ext_resource type="PackedScene" uid="uid://bblwssdbjf8e" path="res://objects/test_shooter.tscn" id="3_3s3wk"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_62s33"]
 margin = 1.0
@@ -18,6 +19,10 @@ collision_layer = 2
 spring_arm = NodePath("../View/RootOffset/SpringArm3D")
 movement_speed = 500
 jump_strength = 16
+
+[node name="FireFrom" type="RayCast3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
+target_position = Vector3(2.08165e-12, 2.08165e-12, -1)
 
 [node name="View" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -41,3 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0, 2.08165e-12)
 unique_name_in_owner = true
 current = true
 fov = 40.0
+
+[node name="TestShooter" parent="View/RootOffset/SpringArm3D/LeafOffset/Camera" node_paths=PackedStringArray("fire_from") instance=ExtResource("3_3s3wk")]
+transform = Transform3D(1, -1.21652e-31, 0, -1.21652e-31, 1, 0, 0, 0, 1, 0, 0, 0)
+fire_from = NodePath("../../../../../../Player/FireFrom")

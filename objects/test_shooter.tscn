@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bblwssdbjf8e"]
+
+[ext_resource type="Script" path="res://scripts/test_shooter.gd" id="1_4vln7"]
+
+[node name="TestShooter" type="Node3D"]
+script = ExtResource("1_4vln7")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+visible = false
+target_position = Vector3(2.08165e-12, 2.08165e-12, -1)
+hit_from_inside = true
