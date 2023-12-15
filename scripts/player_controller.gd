@@ -119,7 +119,7 @@ func _input(event):
 		aiming = false
 		emit_signal("Aiming", aiming)
 	
-	if event.is_action_pressed("shoot"):
+	if event.is_action_pressed("shoot") and aiming:
 		emit_signal("Shoot")
 
 

@@ -33,8 +33,9 @@ public partial class projectile : Node3D
 	{
 		if (movement)
 		{
-			this.Position += Transform.Basis * velocity * (float)delta;
 			// this.LookAtFromPosition(this.GlobalPosition, this.Position + velocity, Vector3.Down);
+			// this.GlobalPosition += GlobalTransform.Basis * velocity * (float)delta;
+			this.GlobalTranslate(velocity * (float)delta);
 
 		}
 		if (rayCast.IsColliding())
