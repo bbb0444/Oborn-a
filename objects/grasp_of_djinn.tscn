@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0s5u58yofnbq"]
+
+[ext_resource type="Script" path="res://scripts/grasp_of_djinn.gd" id="1_464oa"]
+[ext_resource type="Script" path="res://scripts/incident_reflection_ray.gd" id="2_kcyi2"]
+
+[node name="GraspOfDjinn" type="Node3D"]
+script = ExtResource("1_464oa")
+
+[node name="IncidentReflectionRay" type="Node3D" parent="."]
+script = ExtResource("2_kcyi2")

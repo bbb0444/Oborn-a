@@ -1,4 +1,5 @@
 extends Node3D
+class_name PlayerController
 
 @onready var arm = %SpringArm3D
 @onready var camera = %Camera
@@ -18,7 +19,7 @@ extends Node3D
 @export var lerp_weight = 10
 
 @export_group("Camera")
-@export var zoom_maximum = 0.0
+@export var zoom_maximum = 4.0
 @export var zoom_speed = 1
 @export var x_offset = 0
 @export var y_offset = 0
@@ -85,7 +86,7 @@ func handle_input(delta):
 		# player.look_at(player.transform.origin + arm.transform.basis.z, Vector3.UP)
 		offset.x = aiming_offset
 		offset.y = -.25
-		offset.z = 5
+		offset.z = 0
 		arm.spring_length = lerp(arm.spring_length, zoom_maximum, lerp_weight * delta)
 		camera_y_rot_clamp = lerp(camera_y_rot_clamp, 80.0, lerp_weight * delta)
 
@@ -95,7 +96,7 @@ func handle_input(delta):
 		offset.y = y_offset
 		offset.z = z_offset
 		arm.spring_length = lerp(arm.spring_length, zoom_default, lerp_weight * delta)
-		camera_y_rot_clamp = lerp(camera_y_rot_clamp, 0.0, lerp_weight * delta)
+		camera_y_rot_clamp = lerp(camera_y_rot_clamp, 80.0, lerp_weight * delta)
 
 	
 
@@ -125,6 +126,7 @@ func _input(event):
 
 	if event is InputEventMouseMotion:
 		mouse_delta = Vector2(event.relative.x, event.relative.y) * mouse_sensitivity # mouse vector since last frame
+
 	
 
 func get_player_pos() -> Vector3:
