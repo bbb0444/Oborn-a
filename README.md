@@ -1,8 +1,6 @@
-% Oborn
-
 # A Simple 3rd Person Shooter Character Controller Template
 
-![](https://github.com/bbb0444/Oborn-a/project.png)
+![photo of project](https://github.com/bbb0444/Oborn-a/blob/main/project.png)
 
 ## To Run
 
@@ -14,4 +12,4 @@ This project is built on Godot 4.0 mono
 
 ## Demo
 
-![](https://github.com/Your_Repository_Name/projectDemo.gif)
+![gif demo of project](https://github.com/bbb0444/Oborn-a/blob/main/projectDemo.gif)
