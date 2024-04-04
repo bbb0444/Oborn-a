@@ -53,7 +53,6 @@ func _physics_process(delta):
 	
 	# Set position and rotation to targets
 	
-	arm.rotation_degrees = camera_rotation
 	view.position = target.global_transform.origin
 
 	#camera.position = camera.position.lerp(offset, lerp_weight * delta)
@@ -76,7 +75,7 @@ func handle_input(delta):
 	input.x = Input.get_axis("camera_down","camera_up")
 	
 	camera_rotation += input.limit_length(1.0) * rotation_speed * delta # Rotate camera consistently
-
+	
 	camera_rotation.y -= mouse_delta.x
 	camera_rotation.x = clamp(camera_rotation.x - mouse_delta.y, camera_x_rot_clamp, camera_y_rot_clamp)
 
@@ -101,7 +100,19 @@ func handle_input(delta):
 	
 
 	camera.position = camera.position.lerp(offset, lerp_weight * delta)
+
+	
+	# make camera rotate itself when spring arm touches the ground
+	# var angle = arm.transform.basis.z.angle_to(Vector3.UP)
+	# if rad_to_deg(angle) > 99.0:
+	# 	camera.rotation_degrees = camera_rotation
+	
+	# print(rad_to_deg(angle))
+
+	arm.rotation_degrees = camera_rotation
 	mouse_delta = Vector2.ZERO # Reset mouse delta to stop camera from rotating when not moving mouse
+
+	
 
 	#print(camera.position)
 	#print(arm.spring_length)

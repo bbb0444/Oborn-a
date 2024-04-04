@@ -17,6 +17,9 @@ var prev_collision_point = Vector3(0,0,0)
 var collistion_pt_and_obj
 var collision_obj
 
+var projectiles = []
+
+
 signal Looking_At(fire_from_point, collision_point, collision_obj)
 
 var range = 250
@@ -92,6 +95,7 @@ func spawn_projectile(direction: Vector3, camera: Camera3D):
 	projectile_instance.SetVelocity(direction*speed)
 	projectile_instance.Move(true)
 
+	projectiles.append(projectile_instance)
 	World.add_child(projectile_instance)
 	var world = get_tree().get_root()
 	# get_world_3d().get_tree().add_child(projectile_instance)

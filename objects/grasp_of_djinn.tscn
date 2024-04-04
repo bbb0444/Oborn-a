@@ -8,3 +8,5 @@ script = ExtResource("1_464oa")
 
 [node name="IncidentReflectionRay" type="Node3D" parent="."]
 script = ExtResource("2_kcyi2")
+
+[node name="HandSpawner" type="Node3D" parent="."]
